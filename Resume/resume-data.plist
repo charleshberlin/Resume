@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>side_projects</key>
+	<array>
+		<dict>
+			<key>image</key>
+			<string>orlybot</string>
+			<key>name</key>
+			<string>Orlybot</string>
+			<key>date_string</key>
+			<string>April 2016</string>
+			<key>description_text</key>
+			<string>A satirical open source O&apos;Reilly book cover generator. The application was written in Python using PIL, an open source library to draw the book cover graphics programmatically, and Flask, a micro web development framework, to handle requests deployed to a Heroku server. A fun project that has taken on a life of it&apos;s own including an online web generator, a subreddit, and a twitter bot.</string>
+			<key>websites</key>
+			<array>
+				<string>https://github.com/charleshberlin/O-RLY-Book-Generator</string>
+				<string>http://dev.to/rlyslack</string>
+				<string>http://dev.to/rly</string>
+				<string>https://www.reddit.com/r/orlybooks</string>
+				<string>https://twitter.com/OreillyCover</string>
+			</array>
+		</dict>
+		<dict>
+			<key>image</key>
+			<string>hackfortress</string>
+			<key>name</key>
+			<string>Hack Fortress</string>
+			<key>date_string</key>
+			<string>December 2014</string>
+			<key>description_text</key>
+			<string>Hack Fortress is a unique blend of Team Fortress 2 and a computer security contest.  The competition is given twice a year at DevCon and ShooCon.  Charles volunteers to help set up and tear down the contest each year, helps moderate the contest, and designed and coded the scoreboard in Ext.js.</string>
+			<key>websites</key>
+			<array>
+				<string>http://shmoocon.org/hack-fortress/</string>
+			</array>
+		</dict>
+	</array>
+	<key>experience</key>
+	<array>
+		<dict>
+			<key>image</key>
+			<string>sencha</string>
+			<key>job_title</key>
+			<string>Senior Software Engineer</string>
+			<key>date_string</key>
+			<string>April 2015 - Present</string>
+			<key>description_text</key>
+			<string>As a senior software engineer at Sencha Charles was responsible for the iOS and Android versions of the Sencha Web Application Manager, a secure cross-platform web application deployment and management solution.  His responsibilities included refactoring and modernizing a legacy code base, adding and updating device apis including a sqlite manager, camera hardware access, and a secure file system, writing tests, and customizing and automating build deployments.</string>
+			<key>name</key>
+			<string>Sencha</string>
+			<key>websites</key>
+			<array>
+				<string>https://www.sencha.com/store/web-application-manager/</string>
+			</array>
+		</dict>
+		<dict>
+			<key>image</key>
+			<string>martiancraft</string>
+			<key>job_title</key>
+			<string>Cross Platform Engineer</string>
+			<key>date_string</key>
+			<string>April 2014 - April 2015</string>
+			<key>description_text</key>
+			<string>As a cross platform engineer at MartianCraft Charles was assigned to work with clients on mobile projects involving native applications in Objective-C and Java as well as providing web service backends in javascript.  In order to achieve client success Charles developed close and comfortable relationships with clients in order to successfully design, develop, test, and distribute applications.</string>
+			<key>name</key>
+			<string>MartianCraft</string>
+			<key>websites</key>
+			<array>
+				<string>https://ravio.com/us-en/</string>
+				<string>http://huckleapp.com/</string>
+				<string>https://play.google.com/store/apps/details?id=com.sandisk.connect&amp;hl=en</string>
+			</array>
+		</dict>
+		<dict>
+			<key>image</key>
+			<string>mindgrub</string>
+			<key>job_title</key>
+			<string>Principal Software Engineer</string>
+			<key>date_string</key>
+			<string>July 2010 - April 2014</string>
+			<key>description_text</key>
+			<string>Over four years at Mindgrub Charles was a leader of the mobile team, leading development on both iOS and Android projects, writing php service backends, mentoring and teaching interns, conducting interviews, and even founded a weekly professional development group.</string>
+			<key>name</key>
+			<string>Mindgrub</string>
+			<key>websites</key>
+			<array>
+				<string>http://www.djstreamapp.com</string>
+				<string>http://www.bcps.org/news/mobileapp.html</string>
+				<string>https://itunes.apple.com/us/developer/silverpoint-inc./id561738875</string>
+			</array>
+		</dict>
+	</array>
+	<key>colleges</key>
+	<array>
+		<dict>
+			<key>image</key>
+			<string>jhu_logo</string>
+			<key>name</key>
+			<string>John&apos;s Hopkins University</string>
+			<key>short_name</key>
+			<string>JHU</string>
+			<key>major</key>
+			<string>MS Computer Science</string>
+			<key>graduation</key>
+			<string>Expected August 2016</string>
+			<key>gpa</key>
+			<string>4.0</string>
+		</dict>
+		<dict>
+			<key>image</key>
+			<string>umbc</string>
+			<key>name</key>
+			<string>University of Maryland, Baltimore County</string>
+			<key>short_name</key>
+			<string>UMBC</string>
+			<key>major</key>
+			<string>BS Computer Science</string>
+			<key>graduation</key>
+			<string>December 2010</string>
+			<key>gpa</key>
+			<string>3.77</string>
+		</dict>
+	</array>
+	<key>profile</key>
+	<dict>
+		<key>large_image</key>
+		<string>cover_image</string>
+		<key>over_image</key>
+		<string>overview</string>
+		<key>profile_image</key>
+		<string>profile</string>
+		<key>github</key>
+		<string>https://github.com/charleshberlin</string>
+		<key>twitter</key>
+		<string>https://twitter.com/AModelEngineer</string>
+		<key>phone</key>
+		<string>4432559501</string>
+		<key>email</key>
+		<string>charleshberlin@gmail.com</string>
+		<key>mission</key>
+		<string>Charles Berlin is a software engineer specializing in mobile application development looking to further his knowledge and experience in software. Charles Berlin is interested in an environment with a close attention to detail, an emphasis on quality control, and a commitment to sound engineering processes, while balancing a fun and exciting atmosphere.  Technical Proficiencies: - Object Oriented Programming with Java, Objective-C, and Swift 
+- iPhone application development using Objective-C/Swift and Xcode 
+-Android development with Java and Android Studio 
+- Cross platform development in Javascript with React Native</string>
+		<key>title</key>
+		<string>Software Engineer</string>
+		<key>name</key>
+		<string>Charles Berlin</string>
+	</dict>
+</dict>
+</plist>
