@@ -24,7 +24,7 @@ class SideProjectsViewController: DetailViewController {
         self.projectImageView.image = UIImage(named: self.sideProject!.image)
         self.dateLabel.text = self.sideProject!.dateString
         
-        self.descriptionTextView.text = self.sideProject!.descriptionText + "\n\n" + self.sideProject!.websites.joinWithSeparator("\n")
+        self.descriptionTextView.text = self.sideProject!.descriptionText + "\n\n" + self.sideProject!.websites.joined(separator: "\n")
         
         self.title = self.sideProject!.name
     }

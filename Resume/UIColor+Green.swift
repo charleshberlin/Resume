@@ -19,6 +19,6 @@ extension UIColor {
     }
     
     class func resumeTextColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
 }

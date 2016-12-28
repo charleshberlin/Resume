@@ -27,7 +27,7 @@ class WorkExperienceViewController: DetailViewController {
         self.jobTitleLabel.text = self.job!.jobTitle
         self.dateLabel.text = self.job!.dateString
         
-        self.descriptionTextView.text = self.job!.descriptionText + "\n\n" + self.job!.websites.joinWithSeparator("\n")
+        self.descriptionTextView.text = self.job!.descriptionText + "\n\n" + self.job!.websites.joined(separator: "\n")
         
         self.title = self.job!.name
     }

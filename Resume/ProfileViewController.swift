@@ -32,53 +32,53 @@ class ProfileViewController: DetailViewController, MFMailComposeViewControllerDe
         self.title = "Profile"
     }
     
-    @IBAction func phone(sender: UIButton) {
+    @IBAction func phone(_ sender: UIButton) {
         if let phone = self.profile?.phone {
-            UIApplication.sharedApplication().openURL(NSURL(string: "tel://\(phone)")!)
+            UIApplication.shared.openURL(URL(string: "tel://\(phone)")!)
         } else {
             showErrorAlert(title: "Missing Profile", message: "Phone not provided")
         }
     }
     
-    @IBAction func tweet(sender: UIButton) {
+    @IBAction func tweet(_ sender: UIButton) {
         if let twitter = self.profile?.twitterUrl {
-            UIApplication.sharedApplication().openURL(NSURL(string: twitter)!)
+            UIApplication.shared.openURL(URL(string: twitter)!)
         } else {
             showErrorAlert(title: "Missing Profile", message: "Twitter profile not provided")
         }
     }
     
-    @IBAction func git(sender: UIButton) {
+    @IBAction func git(_ sender: UIButton) {
         if let git = self.profile?.githubUrl {
-            UIApplication.sharedApplication().openURL(NSURL(string: git)!)
+            UIApplication.shared.openURL(URL(string: git)!)
         } else {
             showErrorAlert(title: "Missing Profile", message: "Github profile not provided")
         }
     }
     
-    @IBAction func email(sender: UIButton) {
+    @IBAction func email(_ sender: UIButton) {
         if MFMailComposeViewController.canSendMail(), let email = self.profile?.email {
             let mailComposerVC = MFMailComposeViewController()
         
             mailComposerVC.mailComposeDelegate = self
             mailComposerVC.setToRecipients([email])
         
-            self.presentViewController(mailComposerVC, animated: true, completion: nil)
+            self.present(mailComposerVC, animated: true, completion: nil)
         } else {
             self.showErrorAlert(title: "Could Not Send Email", message: "Your device is not setup for email")
         }
     }
     
-    func showErrorAlert(title title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func showErrorAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let OKAction = UIAlertAction(title: "OK", style: .Cancel) { (_) in }
+        let OKAction = UIAlertAction(title: "OK", style: .cancel) { (_) in }
         alertController.addAction(OKAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

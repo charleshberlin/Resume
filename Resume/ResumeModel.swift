@@ -20,7 +20,7 @@ struct Resume {
         }
         
         guard let profileDict = dict["profile"] as? [String:AnyObject],
-            let profile = Profile(profileDict: profileDict) else {
+            let profile = Profile(profileDict: profileDict as NSDictionary) else {
                 return nil
         }
         
@@ -32,7 +32,7 @@ struct Resume {
         }
         
         for collegeDict in educationArray {
-            if let college = College(collegeDict: collegeDict) {
+            if let college = College(collegeDict: collegeDict as NSDictionary) {
                 colleges.append(college)
             }
         }
@@ -45,7 +45,7 @@ struct Resume {
         }
         
         for projectDict in projectsArray {
-            if let project = SideProject(projectDict: projectDict) {
+            if let project = SideProject(projectDict: projectDict as NSDictionary) {
                 projects.append(project)
             }
         }
@@ -58,7 +58,7 @@ struct Resume {
         }
         
         for jobDict in jobsArray {
-            if let job = Job(jobDict: jobDict) {
+            if let job = Job(jobDict: jobDict as NSDictionary) {
                 jobs.append(job)
             }
         }

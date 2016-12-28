@@ -18,16 +18,16 @@ class RootViewController: UIViewController, MFMailComposeViewControllerDelegate,
     
     @IBOutlet var overImageView: UIImageView!
     
-    private var backgroundImage: UIImage?
-    private var visualEffectView: UIVisualEffectView?
-    private var originalBottomConstraint: CGFloat = 0.0
+    fileprivate var backgroundImage: UIImage?
+    fileprivate var visualEffectView: UIVisualEffectView?
+    fileprivate var originalBottomConstraint: CGFloat = 0.0
     
-    private var resume: Resume!
+    fileprivate var resume: Resume!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.resume = Resume(path: NSBundle.mainBundle().pathForResource("resume-data", ofType: "plist")!)!
+        self.resume = Resume(path: Bundle.main.path(forResource: "resume-data", ofType: "plist")!)!
         self.view.backgroundColor = UIColor.resumePrimaryColor()
         
         self.backgroundImage = UIImage(named: resume.profile.largeImageName)
@@ -37,13 +37,13 @@ class RootViewController: UIViewController, MFMailComposeViewControllerDelegate,
         
         updateBlur()
         
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
     
-    func sendResume(sender: UIButton) {
+    func sendResume(_ sender: UIButton) {
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
-            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            self.present(mailComposeViewController, animated: true, completion: nil)
         } else {
             self.showSendMailErrorAlert()
         }
@@ -53,9 +53,9 @@ class RootViewController: UIViewController, MFMailComposeViewControllerDelegate,
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         
-        if let filePath = NSBundle.mainBundle().pathForResource("Charles Berlin Resume", ofType: "pdf") {
+        if let filePath = Bundle.main.path(forResource: "Charles Berlin Resume", ofType: "pdf") {
             
-            if let fileData = NSData(contentsOfFile: filePath) {
+            if let fileData = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
                 mailComposerVC.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "Charles Berlin Resume.pdf")
             }
         }
@@ -64,30 +64,30 @@ class RootViewController: UIViewController, MFMailComposeViewControllerDelegate,
     }
     
     func showSendMailErrorAlert() {
-        let alertController = UIAlertController(title: "Could Not Send Email", message: "Your device is not setup for email", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Could Not Send Email", message: "Your device is not setup for email", preferredStyle: .alert)
         
-        let OKAction = UIAlertAction(title: "OK", style: .Cancel) { (_) in }
+        let OKAction = UIAlertAction(title: "OK", style: .cancel) { (_) in }
         alertController.addAction(OKAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateBlur()
     }
     
-    private func updateBlur() {
+    fileprivate func updateBlur() {
         self.imageBottomConstraint.constant = originalBottomConstraint + self.tableView.contentOffset.y / 4
         
         let blurOffset:CGFloat = 20
         let blurRadius = max(0, self.tableView.contentOffset.y/4+blurOffset)
         
         if blurRadius > 0 {
-            self.backgroundImageView.image = UIImageEffects.imageByApplyingBlurToImage(self.backgroundImage, withRadius: blurRadius, tintColor: nil, saturationDeltaFactor: 1.0, maskImage: nil)
+            self.backgroundImageView.image = UIImageEffects.imageByApplyingBlur(to: self.backgroundImage, withRadius: blurRadius, tintColor: nil, saturationDeltaFactor: 1.0, maskImage: nil)
         } else {
             self.backgroundImageView.image = self.backgroundImage
         }
@@ -97,42 +97,42 @@ class RootViewController: UIViewController, MFMailComposeViewControllerDelegate,
 
 //MARK: UITableViewDelegate
 extension RootViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            if let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("profile") as? ProfileViewController {
+            if let profileController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "profile") as? ProfileViewController {
                 profileController.profile = resume.profile
                 self.navigationController?.pushViewController(profileController, animated: true)
             }
         case 1:
-            if let educationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("education") as? EducationViewController {
+            if let educationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "education") as? EducationViewController {
                 educationController.college = resume.education[indexPath.row]
                 self.navigationController?.pushViewController(educationController, animated: true)
             }
         case 2:
-            if let workController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("work_experience") as? WorkExperienceViewController {
+            if let workController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "work_experience") as? WorkExperienceViewController {
                 workController.job = resume.experience[indexPath.row]
                 self.navigationController?.pushViewController(workController, animated: true)
             }
         default:
-            if let sideProjectController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("side_projects") as? SideProjectsViewController {
+            if let sideProjectController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "side_projects") as? SideProjectsViewController {
                 sideProjectController.sideProject = resume.sideProjects[indexPath.row]
                 self.navigationController?.pushViewController(sideProjectController, animated: true)
             }
         }
         
-        self.tableView .deselectRowAtIndexPath(indexPath, animated: true)
+        self.tableView .deselectRow(at: indexPath, animated: true)
     }
 }
 
 //MARK: UITableViewDataSource
 extension RootViewController: UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             case 0:     return 1
             case 1:     return resume.education.count
@@ -141,12 +141,12 @@ extension RootViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.textLabel?.font = UIFont(descriptor: UIFontDescriptor(fontAttributes:[UIFontDescriptorFamilyAttribute:"Didot", UIFontDescriptorTraitsAttribute:[UIFontWeightTrait:UIFontWeightRegular]]), size: 14.0)
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = UIColor(red: 0.19, green: 0.29, blue: 0.10, alpha: 1.0)
-        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.textColor = UIColor.white
         
         switch indexPath.section {
             case 0:
@@ -163,11 +163,11 @@ extension RootViewController: UITableViewDataSource {
     }
     
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView(frame: CGRectMake(0,0, tableView.frame.size.width, 40))
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView(frame: CGRect(x: 0,y: 0, width: tableView.frame.size.width, height: 40))
         
-        let headerText = UILabel(frame: CGRectMake(16,0, tableView.frame.size.width - 32, 40))
-        headerText.textColor = UIColor.whiteColor()
+        let headerText = UILabel(frame: CGRect(x: 16,y: 0, width: tableView.frame.size.width - 32, height: 40))
+        headerText.textColor = UIColor.white
         headerText.font = UIFont(descriptor: UIFontDescriptor(fontAttributes:[UIFontDescriptorFamilyAttribute:"Didot", UIFontDescriptorTraitsAttribute:[UIFontWeightTrait:UIFontWeightBold]]), size: 18.0)
         
         switch section {
@@ -187,7 +187,7 @@ extension RootViewController: UITableViewDataSource {
         return header
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
 }

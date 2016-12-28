@@ -169,6 +169,7 @@
 					8039EC301CCD13DE0094F4A2 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = FYGN6FM98D;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -342,6 +343,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Resume/Resume-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -359,6 +361,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Resume/Resume-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

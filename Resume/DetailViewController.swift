@@ -15,21 +15,21 @@ class DetailViewController: UIViewController {
         
         let gradientLayer = CAGradientLayer()
         
-        gradientLayer.colors = [UIColor.resumeSecondaryColor().CGColor, UIColor.resumePrimaryColor().CGColor]
+        gradientLayer.colors = [UIColor.resumeSecondaryColor().cgColor, UIColor.resumePrimaryColor().cgColor]
         gradientLayer.frame = self.view.bounds;
         
-        self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
 }
